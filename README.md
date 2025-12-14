@@ -103,11 +103,40 @@ NOTION_DATABASE_ID=your-notion-database-id
 npm start
 ```
 
+Server runs at: `http://localhost:3000`
+
 ---
 
-## 🚀 Deployment Guide (For Judges)
+## 🚀 Testing Guide (For Judges)
 
-### Live API (Already Deployed)
+### Option 1: Test Locally
+
+**Start the server:**
+```bash
+npm install
+npm start
+```
+
+**Test health endpoint:**
+```
+http://localhost:3000/health
+```
+
+**Test API with curl:**
+```bash
+curl -X POST http://localhost:3000/api/speakspace/action \
+  -H "Content-Type: application/json" \
+  -H "x-user-id: lawyer_senior_01" \
+  -d '{"transcription": "Create new case for John Smith regarding property dispute. Email john@example.com"}'
+```
+
+**Test API with PowerShell:**
+```powershell
+$body = '{"transcription": "Create new case for John Smith regarding property dispute"}';
+Invoke-RestMethod -Uri "http://localhost:3000/api/speakspace/action" -Method Post -Headers @{"x-user-id"="lawyer_senior_01"; "Content-Type"="application/json"} -Body $body
+```
+
+### Option 2: Test Live Deployed API
 
 **Base URL:** `https://legal-case-management-production.up.railway.app`
 
@@ -116,9 +145,7 @@ npm start
 https://legal-case-management-production.up.railway.app/health
 ```
 
-### Test the API
-
-**Using curl:**
+**Test API with curl:**
 ```bash
 curl -X POST https://legal-case-management-production.up.railway.app/api/speakspace/action \
   -H "Content-Type: application/json" \
@@ -126,17 +153,16 @@ curl -X POST https://legal-case-management-production.up.railway.app/api/speaksp
   -d '{"transcription": "Create new case for John Smith regarding property dispute. Email john@example.com"}'
 ```
 
-**Using PowerShell:**
-```powershell
-$body = '{"transcription": "Create new case for John Smith regarding property dispute"}';
-Invoke-RestMethod -Uri "https://legal-case-management-production.up.railway.app/api/speakspace/action" -Method Post -Headers @{"x-user-id"="lawyer_senior_01"; "Content-Type"="application/json"} -Body $body
-```
-
 ---
 
 ## 🔌 API Endpoint & Authorization
 
-### Endpoint URL
+### Endpoint URL (Local)
+```
+http://localhost:3000/api/speakspace/action
+```
+
+### Endpoint URL (Deployed)
 ```
 https://legal-case-management-production.up.railway.app/api/speakspace/action
 ```
@@ -156,6 +182,18 @@ https://legal-case-management-production.up.railway.app/api/speakspace/action
 
 ## 📋 SpeakSpace Action Configuration (Copy-Paste Ready)
 
+**For Local Testing:**
+```
+Title: Legal Case Manager
+Description: Automate legal case management from voice notes
+API URL: http://localhost:3000/api/speakspace/action
+Method: POST
+Authorization Type: Custom Header
+Header Name: x-user-id
+Header Value: lawyer_senior_01
+```
+
+**For Deployed Version:**
 ```
 Title: Legal Case Manager
 Description: Automate legal case management from voice notes
