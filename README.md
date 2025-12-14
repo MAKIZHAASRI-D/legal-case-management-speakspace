@@ -58,7 +58,7 @@ NOTION_DATABASE_ID=your-db-id
 |-------|-------|
 | **Title** | Legal Case Manager |
 | **Description** | Automate legal case management from voice notes |
-| **API URL** | `https://your-server.com/api/speakspace/action` |
+| **API URL** | `https://legal-case-management-production.up.railway.app/api/speakspace/action` |
 | **Method** | POST |
 
 ---
